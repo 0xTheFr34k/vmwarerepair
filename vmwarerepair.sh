@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Get the VMware Player version
-vmware_version=$(vmplayer -v | grep -oE 'Player 17\.[0-9]+\.[0-9]+' | awk '{print $2}')
+# Get the VMware Player version and redirect stderr to /dev/null to ignore warnings
+vmware_version=$(vmplayer -v 2>/dev/null | grep -oE 'VMware Player [0-9]+\.[0-9]+\.[0-9]+' | awk '{print $3}')
 
 # Check if the version is found
 if [ -z "$vmware_version" ]; then
